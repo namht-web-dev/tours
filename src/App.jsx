@@ -17,7 +17,6 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       setTours(data);
     } catch (error) {
       console.log(error);
@@ -32,8 +31,11 @@ function App() {
   return (
     <main>
       <div className="title">
-        {/* <h2>no tours left</h2> */}
-        <Tours tours={tours} removeTour={removeTour} />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Tours tours={tours} removeTour={removeTour} />
+        )}
       </div>
     </main>
   );
